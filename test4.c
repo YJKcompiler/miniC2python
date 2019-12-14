@@ -10,6 +10,7 @@ void main() {
     int b = 5;
     int c = 0;
     int numArr[10];
+    char test[10] = "cat";
     numArr[1]=23;
     while(b<10) {
         ++b;

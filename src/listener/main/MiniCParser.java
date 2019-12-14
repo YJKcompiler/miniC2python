@@ -26,8 +26,8 @@ public class MiniCParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, VOID=20, INT=21, DOUBLE=22, FLOAT=23, CHAR=24, STRUCT=25, 
 		WHILE=26, IF=27, ELSE=28, RETURN=29, OR=30, AND=31, LE=32, GE=33, EQ=34, 
-		NE=35, IDENT=36, LITERAL=37, DecimalConstant=38, OctalConstant=39, HexadecimalConstant=40, 
-		WS=41;
+		NE=35, IDENT=36, STRING=37, FIDENT=38, LITERAL=39, DecimalConstant=40, 
+		OctalConstant=41, HexadecimalConstant=42, WS=43;
 	public static final int
 		RULE_program = 0, RULE_decl = 1, RULE_var_decl = 2, RULE_type_spec = 3, 
 		RULE_fun_decl = 4, RULE_params = 5, RULE_param = 6, RULE_stmt = 7, RULE_expr_stmt = 8, 
@@ -58,8 +58,8 @@ public class MiniCParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, "VOID", "INT", "DOUBLE", 
 			"FLOAT", "CHAR", "STRUCT", "WHILE", "IF", "ELSE", "RETURN", "OR", "AND", 
-			"LE", "GE", "EQ", "NE", "IDENT", "LITERAL", "DecimalConstant", "OctalConstant", 
-			"HexadecimalConstant", "WS"
+			"LE", "GE", "EQ", "NE", "IDENT", "STRING", "FIDENT", "LITERAL", "DecimalConstant", 
+			"OctalConstant", "HexadecimalConstant", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -693,6 +693,8 @@ public class MiniCParser extends Parser {
 			case T__12:
 			case T__18:
 			case IDENT:
+			case STRING:
+			case FIDENT:
 			case LITERAL:
 				enterOuterAlt(_localctx, 1);
 				{
@@ -903,7 +905,7 @@ public class MiniCParser extends Parser {
 			setState(142);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__7) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__18) | (1L << WHILE) | (1L << IF) | (1L << RETURN) | (1L << IDENT) | (1L << LITERAL))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__7) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__18) | (1L << WHILE) | (1L << IF) | (1L << RETURN) | (1L << IDENT) | (1L << STRING) | (1L << FIDENT) | (1L << LITERAL))) != 0)) {
 				{
 				{
 				setState(139);
@@ -941,6 +943,7 @@ public class MiniCParser extends Parser {
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
+		public TerminalNode STRING() { return getToken(MiniCParser.STRING, 0); }
 		public Local_declContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -965,7 +968,7 @@ public class MiniCParser extends Parser {
 		enterRule(_localctx, 22, RULE_local_decl);
 		int _la;
 		try {
-			setState(182);
+			setState(191);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
 			case 1:
@@ -1052,6 +1055,27 @@ public class MiniCParser extends Parser {
 				match(T__0);
 				}
 				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(182);
+				type_spec();
+				setState(183);
+				match(IDENT);
+				setState(184);
+				match(T__2);
+				setState(185);
+				match(LITERAL);
+				setState(186);
+				match(T__3);
+				setState(187);
+				match(T__1);
+				setState(188);
+				match(STRING);
+				setState(189);
+				match(T__0);
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1100,40 +1124,40 @@ public class MiniCParser extends Parser {
 		If_stmtContext _localctx = new If_stmtContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_if_stmt);
 		try {
-			setState(198);
+			setState(207);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(184);
+				setState(193);
 				match(IF);
-				setState(185);
+				setState(194);
 				match(T__7);
-				setState(186);
+				setState(195);
 				expr(0);
-				setState(187);
+				setState(196);
 				match(T__8);
-				setState(188);
+				setState(197);
 				stmt();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(190);
+				setState(199);
 				match(IF);
-				setState(191);
+				setState(200);
 				match(T__7);
-				setState(192);
+				setState(201);
 				expr(0);
-				setState(193);
+				setState(202);
 				match(T__8);
-				setState(194);
+				setState(203);
 				stmt();
-				setState(195);
+				setState(204);
 				match(ELSE);
-				setState(196);
+				setState(205);
 				stmt();
 				}
 				break;
@@ -1178,26 +1202,26 @@ public class MiniCParser extends Parser {
 		Return_stmtContext _localctx = new Return_stmtContext(_ctx, getState());
 		enterRule(_localctx, 26, RULE_return_stmt);
 		try {
-			setState(206);
+			setState(215);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(200);
+				setState(209);
 				match(RETURN);
-				setState(201);
+				setState(210);
 				match(T__0);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(202);
+				setState(211);
 				match(RETURN);
-				setState(203);
+				setState(212);
 				expr(0);
-				setState(204);
+				setState(213);
 				match(T__0);
 				}
 				break;
@@ -1226,6 +1250,8 @@ public class MiniCParser extends Parser {
 		public ArgsContext args() {
 			return getRuleContext(ArgsContext.class,0);
 		}
+		public TerminalNode STRING() { return getToken(MiniCParser.STRING, 0); }
+		public TerminalNode FIDENT() { return getToken(MiniCParser.FIDENT, 0); }
 		public TerminalNode EQ() { return getToken(MiniCParser.EQ, 0); }
 		public TerminalNode NE() { return getToken(MiniCParser.NE, 0); }
 		public TerminalNode LE() { return getToken(MiniCParser.LE, 0); }
@@ -1266,124 +1292,136 @@ public class MiniCParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(245);
+			setState(256);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
 				{
-				setState(209);
+				setState(218);
 				match(LITERAL);
 				}
 				break;
 			case 2:
 				{
-				setState(210);
+				setState(219);
 				match(T__7);
-				setState(211);
+				setState(220);
 				expr(0);
-				setState(212);
+				setState(221);
 				match(T__8);
 				}
 				break;
 			case 3:
 				{
-				setState(214);
+				setState(223);
 				match(IDENT);
 				}
 				break;
 			case 4:
 				{
-				setState(215);
+				setState(224);
 				match(IDENT);
-				setState(216);
+				setState(225);
 				match(T__2);
-				setState(217);
+				setState(226);
 				expr(0);
-				setState(218);
+				setState(227);
 				match(T__3);
 				}
 				break;
 			case 5:
 				{
-				setState(220);
+				setState(229);
 				match(IDENT);
-				setState(221);
+				setState(230);
 				match(T__7);
-				setState(222);
+				setState(231);
 				args();
-				setState(223);
+				setState(232);
 				match(T__8);
 				}
 				break;
 			case 6:
 				{
-				setState(225);
-				match(T__9);
-				setState(226);
-				expr(20);
+				setState(234);
+				match(STRING);
 				}
 				break;
 			case 7:
 				{
-				setState(227);
-				match(T__10);
-				setState(228);
-				expr(19);
+				setState(235);
+				match(FIDENT);
 				}
 				break;
 			case 8:
 				{
-				setState(229);
-				match(T__11);
-				setState(230);
-				expr(18);
+				setState(236);
+				match(T__9);
+				setState(237);
+				expr(20);
 				}
 				break;
 			case 9:
 				{
-				setState(231);
-				match(T__12);
-				setState(232);
-				expr(17);
+				setState(238);
+				match(T__10);
+				setState(239);
+				expr(19);
 				}
 				break;
 			case 10:
 				{
-				setState(233);
-				match(T__18);
-				setState(234);
-				expr(5);
+				setState(240);
+				match(T__11);
+				setState(241);
+				expr(18);
 				}
 				break;
 			case 11:
 				{
-				setState(235);
-				match(IDENT);
-				setState(236);
-				match(T__1);
-				setState(237);
-				expr(2);
+				setState(242);
+				match(T__12);
+				setState(243);
+				expr(17);
 				}
 				break;
 			case 12:
 				{
-				setState(238);
+				setState(244);
+				match(T__18);
+				setState(245);
+				expr(5);
+				}
+				break;
+			case 13:
+				{
+				setState(246);
 				match(IDENT);
-				setState(239);
-				match(T__2);
-				setState(240);
-				expr(0);
-				setState(241);
-				match(T__3);
-				setState(242);
+				setState(247);
 				match(T__1);
-				setState(243);
+				setState(248);
+				expr(2);
+				}
+				break;
+			case 14:
+				{
+				setState(249);
+				match(IDENT);
+				setState(250);
+				match(T__2);
+				setState(251);
+				expr(0);
+				setState(252);
+				match(T__3);
+				setState(253);
+				match(T__1);
+				setState(254);
 				expr(1);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(288);
+			setState(299);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
@@ -1391,18 +1429,18 @@ public class MiniCParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(286);
+					setState(297);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(247);
+						setState(258);
 						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
-						setState(248);
+						setState(259);
 						match(T__13);
-						setState(249);
+						setState(260);
 						expr(17);
 						}
 						break;
@@ -1410,11 +1448,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(250);
+						setState(261);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
-						setState(251);
+						setState(262);
 						match(T__14);
-						setState(252);
+						setState(263);
 						expr(16);
 						}
 						break;
@@ -1422,11 +1460,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(253);
+						setState(264);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
-						setState(254);
+						setState(265);
 						match(T__15);
-						setState(255);
+						setState(266);
 						expr(15);
 						}
 						break;
@@ -1434,11 +1472,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(256);
+						setState(267);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-						setState(257);
+						setState(268);
 						match(T__10);
-						setState(258);
+						setState(269);
 						expr(14);
 						}
 						break;
@@ -1446,11 +1484,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(259);
+						setState(270);
 						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
-						setState(260);
+						setState(271);
 						match(T__9);
-						setState(261);
+						setState(272);
 						expr(13);
 						}
 						break;
@@ -1458,11 +1496,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(262);
+						setState(273);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(263);
+						setState(274);
 						match(EQ);
-						setState(264);
+						setState(275);
 						expr(12);
 						}
 						break;
@@ -1470,11 +1508,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(265);
+						setState(276);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(266);
+						setState(277);
 						match(NE);
-						setState(267);
+						setState(278);
 						expr(11);
 						}
 						break;
@@ -1482,11 +1520,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(268);
+						setState(279);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(269);
+						setState(280);
 						match(LE);
-						setState(270);
+						setState(281);
 						expr(10);
 						}
 						break;
@@ -1494,11 +1532,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(271);
+						setState(282);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(272);
+						setState(283);
 						match(T__16);
-						setState(273);
+						setState(284);
 						expr(9);
 						}
 						break;
@@ -1506,11 +1544,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(274);
+						setState(285);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(275);
+						setState(286);
 						match(GE);
-						setState(276);
+						setState(287);
 						expr(8);
 						}
 						break;
@@ -1518,11 +1556,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(277);
+						setState(288);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(278);
+						setState(289);
 						match(T__17);
-						setState(279);
+						setState(290);
 						expr(7);
 						}
 						break;
@@ -1530,11 +1568,11 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(280);
+						setState(291);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(281);
+						setState(292);
 						match(AND);
-						setState(282);
+						setState(293);
 						expr(5);
 						}
 						break;
@@ -1542,18 +1580,18 @@ public class MiniCParser extends Parser {
 						{
 						_localctx = new ExprContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(283);
+						setState(294);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(284);
+						setState(295);
 						match(OR);
-						setState(285);
+						setState(296);
 						expr(4);
 						}
 						break;
 					}
 					} 
 				}
-				setState(290);
+				setState(301);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,16,_ctx);
 			}
@@ -1601,7 +1639,7 @@ public class MiniCParser extends Parser {
 		enterRule(_localctx, 30, RULE_args);
 		int _la;
 		try {
-			setState(300);
+			setState(311);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__7:
@@ -1611,24 +1649,26 @@ public class MiniCParser extends Parser {
 			case T__12:
 			case T__18:
 			case IDENT:
+			case STRING:
+			case FIDENT:
 			case LITERAL:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(291);
+				setState(302);
 				expr(0);
-				setState(296);
+				setState(307);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__5) {
 					{
 					{
-					setState(292);
+					setState(303);
 					match(T__5);
-					setState(293);
+					setState(304);
 					expr(0);
 					}
 					}
-					setState(298);
+					setState(309);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -1688,11 +1728,11 @@ public class MiniCParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(302);
+			setState(313);
 			match(STRUCT);
-			setState(303);
+			setState(314);
 			match(IDENT);
-			setState(304);
+			setState(315);
 			struct_stmt();
 			setState(305);
 			match(IDENT);
@@ -1900,13 +1940,13 @@ public class MiniCParser extends Parser {
 		"\3\f\3\f\7\f\u0089\n\f\f\f\16\f\u008c\13\f\3\f\7\f\u008f\n\f\f\f\16\f"+
 		"\u0092\13\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
 		"\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\7\r\u00b1\n"+
-		"\r\f\r\16\r\u00b4\13\r\3\r\3\r\3\r\5\r\u00b9\n\r\3\16\3\16\3\16\3\16\3"+
-		"\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u00c9\n\16\3\17"+
-		"\3\17\3\17\3\17\3\17\3\17\5\17\u00d1\n\17\3\20\3\20\3\20\3\20\3\20\3\20"+
+		"\r\f\r\16\r\u00b4\13\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r"+
+		"\5\r\u00c2\n\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
+		"\3\16\3\16\3\16\5\16\u00d2\n\16\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u00da"+
+		"\n\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
 		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\5\20\u00f8\n\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
-		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
+		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\5\20\u0103"+
+		"\n\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
 		"\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20"+
 		"\3\20\3\20\3\20\7\20\u0121\n\20\f\20\16\20\u0124\13\20\3\21\3\21\3\21"+
 		"\7\21\u0129\n\21\f\21\16\21\u012c\13\21\3\21\5\21\u012f\n\21\3\22\3\22"+

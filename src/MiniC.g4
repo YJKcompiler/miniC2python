@@ -36,8 +36,9 @@ compound_stmt   :   '{' local_decl* stmt* '}'	;
 local_decl	    :   type_spec IDENT ';'
 		        |   type_spec IDENT '=' LITERAL ';'
 		        |   type_spec IDENT '[' LITERAL ']' ';'
-		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}'
-		        |   IDENT IDENT ';';
+		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}' ';'
+		        |   type_spec IDENT '[' LITERAL ']' '=' STRING ';'
+            |   IDENT IDENT ';';
 if_stmt		    :   IF '(' expr ')' stmt
 		        |   IF '(' expr ')' stmt ELSE stmt 		;
 return_stmt	    :   RETURN ';'
@@ -47,6 +48,8 @@ expr	        :   LITERAL
 	            |   IDENT
 	            |   IDENT '[' expr ']'
 	            |   IDENT '(' args ')'
+	            |   STRING
+	            |   FIDENT
 	            |   '-' expr
 	            |   '+' expr
                 |   '--' expr
@@ -94,6 +97,10 @@ NE              :   '!=';
 
 IDENT           :   [a-zA-Z_]   (   [a-zA-Z_]
                 |   [0-9]   )*;
+
+STRING          :   '"' ~('\r' | '\n' | '"')* '"' ;
+
+FIDENT          : [0-9] + '.' + [0.9];
 
 
 LITERAL         :   DecimalConstant
