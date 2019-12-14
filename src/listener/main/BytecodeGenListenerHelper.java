@@ -57,7 +57,7 @@ public class BytecodeGenListenerHelper {
 	}
 
 
-	static boolean isAssigningWithValueInArray(MiniCParser.ExprContext ctx){return ctx.getChildCount() == 6;}
+	static boolean isArrayDecl(MiniCParser.ExprContext ctx){return ctx.getChildCount() == 6;}
 
 
 	static boolean isIntReturn(MiniCParser.Return_stmtContext ctx) {
