@@ -35,6 +35,10 @@ public class BytecodeGenListenerHelper {
 	static boolean isArrayDecl(Var_declContext ctx) {
 		return ctx.getChildCount() == 6;
 	}
+	// var_decl : IDENT IDENT ';';
+	static boolean isStructDecl(Var_declContext ctx) {
+		return ctx.IDENT().size()==2;
+	}
 
 	// <local vars>
 	// local_decl	: type_spec IDENT '[' LITERAL ']' ';'
@@ -45,10 +49,12 @@ public class BytecodeGenListenerHelper {
 	static boolean isArrayDecl(Local_declContext ctx) {
 		return ctx.getChildCount() == 6;
 	}
+	static boolean isStructDecl(Local_declContext ctx) {
+		return ctx.IDENT().size()==2;
+	}
 	static boolean isArrayDecl(MiniCParser.Struct_attributeContext ctx) {
 		return ctx.getChildCount() == 6;
 	}
-	
 	static boolean isDeclWithInit(Local_declContext ctx) {
 		return ctx.getChildCount() == 5 ;
 	}
@@ -62,7 +68,6 @@ public class BytecodeGenListenerHelper {
 
 	static boolean isArrayDecl(MiniCParser.ExprContext ctx){return ctx.getChildCount() == 6;}
 
-
 	static boolean isIntReturn(MiniCParser.Return_stmtContext ctx) {
 		return ctx.getChildCount() ==3;
 	}
@@ -71,7 +76,11 @@ public class BytecodeGenListenerHelper {
 	static boolean isVoidReturn(MiniCParser.Return_stmtContext ctx) {
 		return ctx.getChildCount() == 2;
 	}
-	
+
+	static boolean isStructAssign(MiniCParser.Expr_stmtContext ctx) {
+		return ctx.IDENT() != null;
+	}
+
 	// <information extraction>
 	static String getStackSize(Fun_declContext ctx) {
 		return "32";

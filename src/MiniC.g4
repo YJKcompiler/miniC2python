@@ -11,7 +11,8 @@ decl		    :   var_decl
 var_decl	    :   type_spec IDENT ';'
 		        |   type_spec IDENT '=' LITERAL ';'
 		        |   type_spec IDENT '[' LITERAL ']' ';'
-		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}' ';';
+		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}' ';'
+		        |   IDENT IDENT ';';
 type_spec	    :   VOID
 		        |   INT
 		        |   DOUBLE
@@ -28,13 +29,15 @@ stmt		    :   expr_stmt
 		        |   if_stmt
 		        |   while_stmt
 		        |   return_stmt			;
-expr_stmt	    :   expr ';'			;
+expr_stmt	    :   expr ';'
+                |   IDENT '.' expr ';';
 while_stmt	    :   WHILE '(' expr ')' stmt	;
 compound_stmt   :   '{' local_decl* stmt* '}'	;
 local_decl	    :   type_spec IDENT ';'
 		        |   type_spec IDENT '=' LITERAL ';'
 		        |   type_spec IDENT '[' LITERAL ']' ';'
-		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}' ';';
+		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}'
+		        |   IDENT IDENT ';';
 if_stmt		    :   IF '(' expr ')' stmt
 		        |   IF '(' expr ')' stmt ELSE stmt 		;
 return_stmt	    :   RETURN ';'
