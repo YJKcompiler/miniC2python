@@ -212,6 +212,18 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
             newTexts.put(ctx, "\n" + name +"=" + "[0]*"+size);
             return;
         }
+
+        if (ctx.getChildCount()>6){
+            String name = ctx.IDENT().getText();
+            //String size = ctx.LITERAL().getText();
+            String arr = "";
+            for (int i = 0; i < ctx.expr().size()-1; i++) {
+                arr  += ctx.expr(i).getText()+",";
+            }
+            arr += ctx.expr(ctx.expr().size()-1).getText();
+            newTexts.put(ctx, "\n" + name +"=" + "["+arr+"]");
+            return;
+        }
         String name = ctx.IDENT().getText();
         String value = "\"\"";
 

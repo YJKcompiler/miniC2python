@@ -10,7 +10,8 @@ decl		    :   var_decl
 		        |   struct_decl     ;
 var_decl	    :   type_spec IDENT ';'
 		        |   type_spec IDENT '=' LITERAL ';'
-		        |   type_spec IDENT '[' LITERAL ']' ';'	;
+		        |   type_spec IDENT '[' LITERAL ']' ';'
+		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}' ';';
 type_spec	    :   VOID
 		        |   INT
 		        |   DOUBLE
@@ -32,7 +33,8 @@ while_stmt	    :   WHILE '(' expr ')' stmt	;
 compound_stmt   :   '{' local_decl* stmt* '}'	;
 local_decl	    :   type_spec IDENT ';'
 		        |   type_spec IDENT '=' LITERAL ';'
-		        |   type_spec IDENT '[' LITERAL ']' ';'	;
+		        |   type_spec IDENT '[' LITERAL ']' ';'
+		        |   type_spec IDENT '[' LITERAL ']' '=' '{' expr (',' expr)* '}' ';';
 if_stmt		    :   IF '(' expr ')' stmt
 		        |   IF '(' expr ')' stmt ELSE stmt 		;
 return_stmt	    :   RETURN ';'
