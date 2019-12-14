@@ -7,6 +7,8 @@ import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 import listener.main.MiniCParser.ParamsContext;
 
+import java.util.Iterator;
+
 import static listener.main.BytecodeGenListenerHelper.*;
 import static listener.main.SymbolTable.*;
 
@@ -89,8 +91,10 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         if (ctx.getChildCount() == 1) {
             if (ctx.var_decl() != null)                //var_decl
                 decl += newTexts.get(ctx.var_decl());
-            else                            //fun_decl
+            else if(ctx.fun_decl() != null)                            //fun_decl
                 decl += newTexts.get(ctx.fun_decl());
+            else if(ctx.struct_decl() != null)
+                decl += newTexts.get(ctx.struct_decl());
         }
         newTexts.put(ctx, decl);
     }
@@ -393,6 +397,59 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
             argsStr += newTexts.get(ctx.expr(i));
         }
         newTexts.put(ctx, argsStr);
+    }
+
+    @Override
+    public void exitStruct_decl(MiniCParser.Struct_declContext ctx) {
+        String struct_decl = "";
+
+        String name = "class "+ctx.IDENT()+":"; // class a
+        String constructer = "\ndef __init__(self):" + newTexts.get(ctx.struct_stmt());
+
+        // indent
+        constructer = constructer.replace("\n", "\n\t");
+
+        struct_decl = "\n" + name + constructer;
+        struct_decl += "\n"; // 한 칸 띄우기
+        newTexts.put(ctx, struct_decl);
+    }
+
+    @Override
+    public void exitStruct_stmt(MiniCParser.Struct_stmtContext ctx) {
+        String struct_stmt = "";
+
+        // attribute 선언들
+        Iterator it = ctx.struct_attribute().iterator();
+        while(it.hasNext()) {
+            String attribute = newTexts.get((ParseTree) it.next());
+            struct_stmt += attribute;
+        }
+
+        // indent
+        struct_stmt = struct_stmt.replace("\n", "\n\t");
+        newTexts.put(ctx, struct_stmt);
+    }
+
+    /**
+     *
+     * @param ctx
+     */
+    @Override
+    public void exitStruct_attribute(MiniCParser.Struct_attributeContext ctx) {
+        // self.a
+        String name = "self." + ctx.IDENT().getText();
+
+        if (isArrayDecl(ctx)){
+            // 배열을 선언했을 때
+            String size = ctx.LITERAL().getText();
+            // self.a = [0]*10
+            newTexts.put(ctx, "\n" + name + " = " + "[0]*"+size);
+            return;
+        } else {
+            // self.a = 0
+            newTexts.put(ctx, "\n" + name + " = 0");
+            return;
+        }
     }
 
     @Override

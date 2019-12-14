@@ -45,6 +45,9 @@ public class BytecodeGenListenerHelper {
 	static boolean isArrayDecl(Local_declContext ctx) {
 		return ctx.getChildCount() == 6;
 	}
+	static boolean isArrayDecl(MiniCParser.Struct_attributeContext ctx) {
+		return ctx.getChildCount() == 6;
+	}
 	
 	static boolean isDeclWithInit(Local_declContext ctx) {
 		return ctx.getChildCount() == 5 ;
