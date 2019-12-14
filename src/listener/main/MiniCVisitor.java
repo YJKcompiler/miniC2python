@@ -1,4 +1,4 @@
-// Generated from /home/clearlyhunch/Downloads/Compiler/src/MiniC.g4 by ANTLR 4.7.2
+// Generated from C:/Users/zzz84/OneDrive/desktop/miniC2python/src\MiniC.g4 by ANTLR 4.7.2
  
 package listener.main;
 
@@ -108,4 +108,22 @@ public interface MiniCVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitArgs(MiniCParser.ArgsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiniCParser#struct_decl}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct_decl(MiniCParser.Struct_declContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiniCParser#struct_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct_stmt(MiniCParser.Struct_stmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiniCParser#struct_attribute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStruct_attribute(MiniCParser.Struct_attributeContext ctx);
 }

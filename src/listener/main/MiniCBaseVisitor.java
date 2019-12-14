@@ -1,4 +1,4 @@
-// Generated from /home/clearlyhunch/Downloads/Compiler/src/MiniC.g4 by ANTLR 4.7.2
+// Generated from C:/Users/zzz84/OneDrive/desktop/miniC2python/src\MiniC.g4 by ANTLR 4.7.2
  
 package listener.main;
 
@@ -125,4 +125,25 @@ public class MiniCBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitArgs(MiniCParser.ArgsContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitStruct_decl(MiniCParser.Struct_declContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitStruct_stmt(MiniCParser.Struct_stmtContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitStruct_attribute(MiniCParser.Struct_attributeContext ctx) { return visitChildren(ctx); }
 }

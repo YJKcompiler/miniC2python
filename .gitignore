@@ -4,3 +4,4 @@
 *.name
 .idea/.gitignore
 bin/.gitignore
+bin/
