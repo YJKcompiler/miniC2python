@@ -60,9 +60,8 @@ public class BytecodeGenListenerHelper {
 	}
 	
 	static boolean isVoidF(Fun_declContext ctx) {
-			// <Fill in>
 		if(ctx.type_spec().getText().equals("void")) { return true; }
-		return false; //have to modify
+		return false;
 	}
 
 
@@ -89,19 +88,17 @@ public class BytecodeGenListenerHelper {
 		return "32";
 	}
 	static String getTypeText(Type_specContext typespec) {
-			// <Fill in>
 		switch (typespec.getText()){
 			case "int":
 				return "I";
 			case "void":
 				return "V";
 		}
-		return null;	//have to modify
+		return null;
 	}
 
 	// params
 	static String getParamName(ParamContext param) {
-		// <Fill in>
 		return param.getChild(1).getText();
 	}
 	
@@ -116,17 +113,14 @@ public class BytecodeGenListenerHelper {
 	}
 	
 	static String getLocalVarName(Local_declContext local_decl) {
-		// <Fill in>
 		return local_decl.getChild(1).getText();
 	}
 	
 	static String getFunName(Fun_declContext ctx) {
-		// <Fill in>
 		return ctx.getChild(1).getText();
 	}
 	
 	static String getFunName(ExprContext ctx) {
-		// <Fill in>
 		return ctx.getChild(0).getText();
 	}
 	

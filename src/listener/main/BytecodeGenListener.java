@@ -308,7 +308,6 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     public void exitIf_stmt(MiniCParser.If_stmtContext ctx) {
         String stmt = "";
         stmt += "\n\n" + ctx.getChild(0) + " " + newTexts.get(ctx.expr()) + ":";
-
         stmt += newTexts.get(ctx.stmt(0));
 
         if (noElse(ctx)) {
@@ -329,7 +328,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         if (ctx.expr() != null) { // expr에 값이 있다면.
             stmt += " " + newTexts.get(ctx.expr()); // 거기의 구문을 가져와서 다시 stmt에 스트링으로 저장한다.
         }
-        newTexts.put(ctx, stmt); // 저
+        newTexts.put(ctx, stmt); // 저장
     }
 
 
@@ -363,11 +362,14 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
         switch (ctx.getChild(0).getText()) {
             case "-":
+                expr = ctx.getChild(0).getText() + newTexts.get(ctx.expr(0));
+                break;
             case "+":
+                expr = ctx.getChild(0).getText() + newTexts.get(ctx.expr(0));
+                break;
             case "!":
                 expr = ctx.getChild(0).getText() + newTexts.get(ctx.expr(0));
                 break;
-
             case "--":
                 expr = newTexts.get(ctx.expr(0)) + " -= 1";
                 break;
@@ -379,69 +381,13 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     }
 
     private String handleBinExpr(MiniCParser.ExprContext ctx, String expr) {
-
-
         expr += newTexts.get(ctx.expr(0));
         expr += newTexts.get(ctx.expr(1));
-
-
-        switch (ctx.getChild(1).getText()) {
-            case "*":
-                break;
-            case "/":
-                break;
-            case "%":
-                break;
-            case "+":        // expr(0) expr(1) iadd
-                break;
-            case "-":
-                break;
-
-            case "==":
-
-                break;
-            case "!=":
-
-                break;
-            case "<=":
-
-                break;
-            case "<":
-
-                // <(6) Fill here>
-                break;
-
-            case ">=":
-
-                // <(7) Fill here>
-
-                break;
-
-            case ">":
-
-                // <(8) Fill here>
-                break;
-
-            case "and":
-
-                break;
-            case "or":
-
-                break;
-        }
-
         return expr;
     }
 
     private String handleFunCall(MiniCParser.ExprContext ctx, String expr) {
         String fname = getFunName(ctx);
-
-        if (fname.equals("_print")) {        // System.out.println
-
-        } else {
-
-        }
-
         return null;
 
     }
