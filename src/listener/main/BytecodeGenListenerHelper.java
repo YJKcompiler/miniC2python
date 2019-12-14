@@ -55,7 +55,11 @@ public class BytecodeGenListenerHelper {
 		if(ctx.type_spec().getText().equals("void")) { return true; }
 		return false; //have to modify
 	}
-	
+
+
+	static boolean isAssigningWithValueInArray(MiniCParser.ExprContext ctx){return ctx.getChildCount() == 6;}
+
+
 	static boolean isIntReturn(MiniCParser.Return_stmtContext ctx) {
 		return ctx.getChildCount() ==3;
 	}
