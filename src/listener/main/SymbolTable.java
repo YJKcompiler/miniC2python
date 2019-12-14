@@ -49,23 +49,19 @@ public class SymbolTable {
     }
 
     void putLocalVar(String varname, Type type) {
-        //<Fill here>
         _lsymtable.put(varname, new VarInfo(type));    //have to modify
     }
 
     void putGlobalVar(String varname, Type type) {
-        //<Fill here>
         _gsymtable.put(varname, new VarInfo(type));
     }
 
 
     void putLocalVarWithInitVal(String varname, Type type, int initVar) {
-        //<Fill here>
         _lsymtable.put(varname, new VarInfo(type, initVar));
     }
 
     void putGlobalVarWithInitVal(String varname, Type type, int initVar) {
-        //<Fill here>
         _gsymtable.put(varname, new VarInfo(type,initVar));
     }
 
@@ -89,7 +85,6 @@ public class SymbolTable {
     }
 
     public String getFunSpecStr(String fname) {
-        // <Fill here>
         return _fsymtable.get(fname).sigStr;
     }
 

@@ -67,26 +67,11 @@ public class BytecodeGenListenerHelper {
 
 	static boolean isArrayDecl(MiniCParser.ExprContext ctx){return ctx.getChildCount() == 6;}
 
-	static boolean isIntReturn(MiniCParser.Return_stmtContext ctx) {
-		return ctx.getChildCount() ==3;
-	}
-
-
-	static boolean isVoidReturn(MiniCParser.Return_stmtContext ctx) {
-		return ctx.getChildCount() == 2;
-	}
 
 	static boolean isStructAssign(MiniCParser.Expr_stmtContext ctx) {
 		return ctx.IDENT() != null;
 	}
 
-	// <information extraction>
-	static String getStackSize(Fun_declContext ctx) {
-		return "32";
-	}
-	static String getLocalVarSize(Fun_declContext ctx) {
-		return "32";
-	}
 	static String getTypeText(Type_specContext typespec) {
 		switch (typespec.getText()){
 			case "int":
@@ -127,11 +112,7 @@ public class BytecodeGenListenerHelper {
 	static boolean noElse(If_stmtContext ctx) {
 		return ctx.getChildCount() <= 5;
 	}
-	
-	static String getFunProlog() {
-		 return "";
-	}
-	
+
 	static String getCurrentClassName() {
 		return "Test";
 	}
