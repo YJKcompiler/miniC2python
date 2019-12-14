@@ -300,63 +300,6 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         return expr;
     }
 
-
-    private String handleBinExpr(MiniCParser.ExprContext ctx, String expr) {
-
-
-        expr += newTexts.get(ctx.expr(0));
-        expr += newTexts.get(ctx.expr(1));
-
-
-        switch (ctx.getChild(1).getText()) {
-            case "*":
-
-                break;
-            case "/":
-                break;
-            case "%":
-                break;
-            case "+":        // expr(0) expr(1) iadd
-                break;
-            case "-":
-                break;
-
-            case "==":
-
-                break;
-            case "!=":
-
-                break;
-            case "<=":
-
-                break;
-            case "<":
-
-                // <(6) Fill here>
-                break;
-
-            case ">=":
-
-                // <(7) Fill here>
-
-                break;
-
-            case ">":
-
-                // <(8) Fill here>
-                break;
-
-            case "and":
-
-                break;
-            case "or":
-
-                break;
-        }
-
-        return expr;
-    }
-
     private String handleFunCall(MiniCParser.ExprContext ctx, String expr) {
         String fname = getFunName(ctx);
 
