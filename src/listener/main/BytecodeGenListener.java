@@ -57,6 +57,11 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         }
     }
 
+    @Override
+    public void enterProgram(MiniCParser.ProgramContext ctx) {
+        System.out.println("test child count : " + ctx.getChildCount());
+        System.out.println("test context : " + ctx.getText());
+    }
 
     @Override
     public void exitProgram(MiniCParser.ProgramContext ctx) {
@@ -127,7 +132,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     public void exitWhile_stmt(MiniCParser.While_stmtContext ctx) {
         // <(1) Fill here!>
         String stmt = "";
-        stmt += ctx.getChild(0) + "(" + newTexts.get(ctx.expr()) + "):";
+        stmt += "\n\n" + ctx.getChild(0) + "(" + newTexts.get(ctx.expr()) + "):";
         stmt += newTexts.get(ctx.stmt());
 
         newTexts.put(ctx, stmt);
@@ -228,7 +233,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         // -1 : }
         for (int i = 1; i < ctx.getChildCount() - 2; i++) {
             // 1 ~ -3
-            compound_stmt += newTexts.get(ctx.getChild(i)) + "\n";
+            compound_stmt += newTexts.get(ctx.getChild(i));
         }
 
 
@@ -243,7 +248,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     @Override
     public void exitIf_stmt(MiniCParser.If_stmtContext ctx) {
         String stmt = "";
-        stmt += ctx.getChild(0) + " " + newTexts.get(ctx.expr()) + ":";
+        stmt += "\n\n" + ctx.getChild(0) + " " + newTexts.get(ctx.expr()) + ":";
 
         stmt += newTexts.get(ctx.stmt(0));
 
