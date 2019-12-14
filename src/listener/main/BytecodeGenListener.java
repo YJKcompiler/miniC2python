@@ -59,8 +59,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
     @Override
     public void enterProgram(MiniCParser.ProgramContext ctx) {
-        System.out.println("test child count : " + ctx.getChildCount());
-        System.out.println("test context : " + ctx.getText());
+
     }
 
     @Override
@@ -239,7 +238,6 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
         compound_stmt += newTexts.get(ctx.getChild(ctx.getChildCount() - 2));
         compound_stmt = compound_stmt.replace("\n", "\n\t");
-        compound_stmt += "\n";
         // -2
         newTexts.put(ctx, compound_stmt);
     }
@@ -255,7 +253,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         if (noElse(ctx)) {
 
         } else {
-            stmt += ctx.getChild(5).getText() + ":" + newTexts.get(ctx.stmt(1));
+            stmt += "\n" + ctx.getChild(5).getText() + ":" + newTexts.get(ctx.stmt(1));
         }
 
         newTexts.put(ctx, stmt);
@@ -266,11 +264,11 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     @Override
     public void exitReturn_stmt(MiniCParser.Return_stmtContext ctx) {
         // <(4) Fill here>
-        String stmt = "\nreturn "; // 리턴문을 미리 넣어놓고
+        String stmt = "\n\nreturn"; // 리턴문을 미리 넣어놓고
         if (ctx.expr() != null) { // expr에 값이 있다면.
-            stmt += newTexts.get(ctx.expr()); // 거기의 구문을 가져와서 다시 stmt에 스트링으로 저장한다.
+            stmt += " " + newTexts.get(ctx.expr()); // 거기의 구문을 가져와서 다시 stmt에 스트링으로 저장한다.
         }
-        newTexts.put(ctx, stmt); // 저
+        newTexts.put(ctx, stmt + "\n"); // 저
     }
 
 
