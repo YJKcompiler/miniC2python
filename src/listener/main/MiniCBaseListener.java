@@ -1,4 +1,4 @@
-// Generated from C:/Users/zzz84/OneDrive/desktop/miniC2python/src\MiniC.g4 by ANTLR 4.7.2
+// Generated from /Users/goseonggwan/Downloads/Repo/comp/miniC2python/src/MiniC.g4 by ANTLR 4.7.2
  
 package listener.main;
 
