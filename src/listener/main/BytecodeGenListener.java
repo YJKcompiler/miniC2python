@@ -123,12 +123,10 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     @Override
     public void exitExpr_stmt(MiniCParser.Expr_stmtContext ctx) {
         String stmt = "";
-        //String strcat = "\n"+symbolTable.getFunSpecStr("strcat");
-        if (ctx.getChildCount() == 2) {
+        if (ctx.getChildCount() == 2)
             stmt += "\n" + newTexts.get(ctx.expr());    // expr
-        }else{  //strcat
-            System.out.println("test\n\n\n\n\n");
-        }
+        else if(isStructAssign(ctx))
+            stmt += "\n" + ctx.IDENT().getText() + "." + newTexts.get(ctx.expr());
         newTexts.put(ctx, stmt);
     }
 
@@ -148,7 +146,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     @Override
     public void exitFun_decl(MiniCParser.Fun_declContext ctx) {
         // <(2) Fill here!>
-        String fun_decl = "\ndef " + ctx.IDENT().getText() + "(";
+        String fun_decl = "\n\ndef " + ctx.IDENT().getText() + "(";
         fun_decl += newTexts.get(ctx.params()) + "):";
         fun_decl += newTexts.get(ctx.compound_stmt());
         newTexts.put(ctx, fun_decl);
@@ -189,14 +187,45 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
     @Override
     public void exitVar_decl(MiniCParser.Var_declContext ctx) {
-        String varName = ctx.IDENT().getText();
-        String varDecl = "";
-
-        if (isDeclWithInit(ctx)) {
-            varDecl += "putfield " + varName + "\n";
-            // v. initialization => Later! skip now..:
+        // a[0]
+        // 위와 같이 배열을 선언했을 때
+        if (isArrayDecl(ctx)){
+            String name = ctx.IDENT(0).getText();
+            String size = ctx.LITERAL().getText();
+            newTexts.put(ctx, "\n" + name +"=" + "[0]*"+size);
+            return;
         }
-        newTexts.put(ctx, varDecl);
+        // a[3] = {1,2,3}
+        // 이러한 방법으로 배열 선언을 했을 때 자식의 갯수는 6개 이상.
+        if (ctx.getChildCount()>6){
+            String name = ctx.IDENT(0).getText();
+            //String size = ctx.LITERAL().getText();
+            String arr = "";
+            for (int i = 0; i < ctx.expr().size()-1; i++) {
+                arr  += ctx.expr(i).getText()+",";
+            }
+            arr += ctx.expr(ctx.expr().size()-1).getText();
+            newTexts.put(ctx, "\n" + name +"=" + "["+arr+"]");
+            return;
+        }
+
+        // person p
+        // person is name of struct
+        if(isStructDecl(ctx)) {
+            newTexts.put(ctx, "\n"+ctx.IDENT(1)+" = "+ctx.IDENT(0)+"()");
+            return;
+        }
+
+        String name = ctx.IDENT(0).getText();
+        String value = "None";
+
+        if (ctx.LITERAL() != null) {
+            value = ctx.LITERAL().getText();
+        }
+
+        // int x;    -->  x = ""
+        // int x=10; --> x = 10
+        newTexts.put(ctx, "\n" + name + " = " + value);
     }
 
     @Override
@@ -210,7 +239,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         // a[0]
         // 위와 같이 배열을 선언했을 때
         if (isArrayDecl(ctx)){
-            String name = ctx.IDENT().getText();
+            String name = ctx.IDENT(0).getText();
             String size = ctx.LITERAL().getText();
             newTexts.put(ctx, "\n" + name +"=" + "[0]*"+size);
             return;
@@ -218,7 +247,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         // a[3] = {1,2,3}
         // 이러한 방법으로 배열 선언을 했을 때 자식의 갯수는 6개 이상.
         if (ctx.getChildCount()>6){
-            String name = ctx.IDENT().getText();
+            String name = ctx.IDENT(0).getText();
             //String size = ctx.LITERAL().getText();
             String arr = "";
 
@@ -235,7 +264,15 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
             return;
         }
-        String name = ctx.IDENT().getText();
+
+        // person p
+        // person is name of struct
+        if(isStructDecl(ctx)) {
+            newTexts.put(ctx, "\n"+ctx.IDENT(1)+" = "+ctx.IDENT(0)+"()");
+            return;
+        }
+
+        String name = ctx.IDENT(0).getText();
         String value = "None";
 
         if (ctx.LITERAL() != null) {
@@ -292,7 +329,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         if (ctx.expr() != null) { // expr에 값이 있다면.
             stmt += " " + newTexts.get(ctx.expr()); // 거기의 구문을 가져와서 다시 stmt에 스트링으로 저장한다.
         }
-        newTexts.put(ctx, stmt + "\n"); // 저
+        newTexts.put(ctx, stmt); // 저
     }
 
 
@@ -425,7 +462,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     public void exitStruct_decl(MiniCParser.Struct_declContext ctx) {
         String struct_decl = "";
 
-        String name = "class "+ctx.IDENT()+":"; // class a
+        String name = "class "+ctx.IDENT(1)+":"; // class a
         String constructer = "\ndef __init__(self):" + newTexts.get(ctx.struct_stmt());
 
         // indent
