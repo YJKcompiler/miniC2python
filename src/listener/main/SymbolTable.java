@@ -33,15 +33,10 @@ public class SymbolTable {
         public String sigStr;
     }
 
-    // 선언한 배열에 대한 정보를 저장한다.
-    static public class AInfo {
-        public String sigStr;
-    }
 
     private Map<String, VarInfo> _lsymtable = new HashMap<>();    // local v.
     private Map<String, VarInfo> _gsymtable = new HashMap<>();    // global v.
     private Map<String, FInfo> _fsymtable = new HashMap<>();    // function
-
 
 
     SymbolTable() {
@@ -62,6 +57,7 @@ public class SymbolTable {
         //<Fill here>
         _gsymtable.put(varname, new VarInfo(type));
     }
+
 
     void putLocalVarWithInitVal(String varname, Type type, int initVar) {
         //<Fill here>
