@@ -66,7 +66,7 @@ expr	        :   LITERAL
                 |   IDENT '[' expr ']' '=' expr		;
 args	        :   expr (',' expr)*
 	            |					 ;
-struct_decl     :   STRUCT IDENT struct_stmt ';' ;
+struct_decl     :   STRUCT IDENT struct_stmt IDENT ';' ;
 struct_stmt     :   '{' struct_attribute+ '}' ;
 struct_attribute:   type_spec IDENT ';'
                 |   type_spec IDENT '[' LITERAL ']' ';' ;

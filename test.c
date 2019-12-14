@@ -1,7 +1,7 @@
 struct Person {
     int a;
     int b[10];
-};
+} haha;
 
 int add(int x, int y) {
     return x+y;

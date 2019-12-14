@@ -412,7 +412,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     public void exitStruct_decl(MiniCParser.Struct_declContext ctx) {
         String struct_decl = "";
 
-        String name = "class "+ctx.IDENT()+":"; // class a
+        String name = "class "+ctx.IDENT(1)+":"; // class a
         String constructer = "\ndef __init__(self):" + newTexts.get(ctx.struct_stmt());
 
         // indent
