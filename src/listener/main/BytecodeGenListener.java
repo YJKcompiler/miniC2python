@@ -208,7 +208,8 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         if (isArrayDecl(ctx)){
             // 배열을 선언했을 때
             String name = ctx.IDENT().getText();
-            newTexts.put(ctx, "\n" + name +"=" + "[]");
+            String size = ctx.LITERAL().getText();
+            newTexts.put(ctx, "\n" + name +"=" + "[0]*"+size);
             return;
         }
         String name = ctx.IDENT().getText();
@@ -288,7 +289,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         } else if (ctx.getChildCount() == 4) { // ????
             expr += ctx.getChild(0).getText() + "(" + ctx.args().getText() + ")";
         } else if(isAssigningWithValueInArray(ctx)){
-            expr += ctx.getChild(0).getText()+".append"+"("+newTexts.get(ctx.expr(1))+")";
+            expr += ctx.getChild(0).getText()+"["+newTexts.get(ctx.expr(0))+"] = "+newTexts.get(ctx.expr(1));
         }
 
         newTexts.put(ctx, expr);
