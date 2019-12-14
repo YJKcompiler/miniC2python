@@ -1,4 +1,4 @@
-// Generated from /home/clearlyhunch/Downloads/Compiler/src/MiniC.g4 by ANTLR 4.7.2
+// Generated from C:/Users/zzz84/OneDrive/desktop/miniC2python/src\MiniC.g4 by ANTLR 4.7.2
  
 package listener.main;
 
@@ -205,6 +205,42 @@ public class MiniCBaseListener implements MiniCListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitArgs(MiniCParser.ArgsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStruct_decl(MiniCParser.Struct_declContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStruct_decl(MiniCParser.Struct_declContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStruct_stmt(MiniCParser.Struct_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStruct_stmt(MiniCParser.Struct_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStruct_attribute(MiniCParser.Struct_attributeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStruct_attribute(MiniCParser.Struct_attributeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

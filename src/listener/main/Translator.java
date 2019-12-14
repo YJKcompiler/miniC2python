@@ -33,7 +33,7 @@ public class Translator {
 	public static void main(String[] args) throws Exception
 	{
 //		CharStream codeCharStream = CharStreams.fromFileName("/Users/goseonggwan/Downloads/Repo/C2Python/Compiler/test2.c");
-		CharStream codeCharStream = CharStreams.fromFileName("test5.c");
+		CharStream codeCharStream = CharStreams.fromFileName("test.c");
 		MiniCLexer lexer = new MiniCLexer(codeCharStream);
 		CommonTokenStream tokens = new CommonTokenStream( lexer );
 		MiniCParser parser = new MiniCParser( tokens );
