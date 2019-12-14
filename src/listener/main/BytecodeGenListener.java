@@ -311,7 +311,6 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         return expr;
     }
 
-
     private String handleBinExpr(MiniCParser.ExprContext ctx, String expr) {
 
 

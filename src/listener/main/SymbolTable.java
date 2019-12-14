@@ -97,11 +97,6 @@ public class SymbolTable {
         return _fsymtable.get(fname).sigStr;
     }
 
-    public String getFunSpecStr(Fun_declContext ctx) {
-        // <Fill here>
-        return getFunSpecStr(ctx.getText());
-    }
-
     public String putFunSpecStr(Fun_declContext ctx) {
         String fname = BytecodeGenListenerHelper.getFunName(ctx);
         String argtype = "";
@@ -121,20 +116,5 @@ public class SymbolTable {
 
         return res;
     }
-
-    Type getVarType(String name) {
-        VarInfo lvar = (VarInfo) _lsymtable.get(name);
-        if (lvar != null) {
-            return lvar.type;
-        }
-
-        VarInfo gvar = (VarInfo) _gsymtable.get(name);
-        if (gvar != null) {
-            return gvar.type;
-        }
-
-        return Type.ERROR;
-    }
-
 
 }
