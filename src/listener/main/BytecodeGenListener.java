@@ -396,6 +396,21 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     }
 
     @Override
+    public void exitStruct_decl(MiniCParser.Struct_declContext ctx) {
+        super.exitStruct_decl(ctx);
+    }
+
+    @Override
+    public void exitStruct_stmt(MiniCParser.Struct_stmtContext ctx) {
+        super.exitStruct_stmt(ctx);
+    }
+
+    @Override
+    public void exitStruct_attribute(MiniCParser.Struct_attributeContext ctx) {
+        super.exitStruct_attribute(ctx);
+    }
+
+    @Override
     public void exitEveryRule(ParserRuleContext ctx) {
         super.exitEveryRule(ctx);
     }
