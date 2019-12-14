@@ -405,9 +405,26 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
         super.exitStruct_stmt(ctx);
     }
 
+    /**
+     *
+     * @param ctx
+     */
     @Override
     public void exitStruct_attribute(MiniCParser.Struct_attributeContext ctx) {
-        super.exitStruct_attribute(ctx);
+        // self.a
+        String name = "self." + ctx.IDENT().getText();
+
+        if (isArrayDecl(ctx)){
+            // 배열을 선언했을 때
+            String size = ctx.LITERAL().getText();
+            // self.a = [0]*10
+            newTexts.put(ctx, "\n" + name + " = " + " [0]*"+size);
+            return;
+        } else {
+            // self.a = 0
+            newTexts.put(ctx, "\n" + name + " = 0");
+            return;
+        }
     }
 
     @Override
