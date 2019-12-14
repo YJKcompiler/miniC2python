@@ -33,7 +33,7 @@ public class Translator {
 	public static void main(String[] args) throws Exception
 	{
 //		CharStream codeCharStream = CharStreams.fromFileName("/Users/goseonggwan/Downloads/Repo/C2Python/Compiler/test2.c");
-		CharStream codeCharStream = CharStreams.fromFileName("test4.c");
+		CharStream codeCharStream = CharStreams.fromFileName("test5.c");
 		MiniCLexer lexer = new MiniCLexer(codeCharStream);
 		CommonTokenStream tokens = new CommonTokenStream( lexer );
 		MiniCParser parser = new MiniCParser( tokens );
@@ -45,7 +45,7 @@ public class Translator {
 		JPanel panel = new JPanel();
 		TreeViewer viewr = new TreeViewer(Arrays.asList(
 				parser.getRuleNames()),tree);
-		viewr.setScale(1.5);//scale a little
+		viewr.setScale(0.9);//scale a little
 		panel.add(viewr);
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
