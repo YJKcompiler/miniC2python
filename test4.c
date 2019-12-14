@@ -11,6 +11,9 @@ void main() {
     int c = 0;
     int numArr[10];
     char test[10] = "cat";
+    char test2[10] = "and dog";
+    char test3[20];
+     test3 = strcat(test,test2);
     numArr[1]=23;
     while(b<10) {
         ++b;

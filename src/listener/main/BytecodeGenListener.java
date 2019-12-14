@@ -123,8 +123,11 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     @Override
     public void exitExpr_stmt(MiniCParser.Expr_stmtContext ctx) {
         String stmt = "";
+        //String strcat = "\n"+symbolTable.getFunSpecStr("strcat");
         if (ctx.getChildCount() == 2) {
             stmt += "\n" + newTexts.get(ctx.expr());    // expr
+        }else{  //strcat
+            System.out.println("test\n\n\n\n\n");
         }
         newTexts.put(ctx, stmt);
     }
@@ -296,20 +299,23 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     @Override
     public void exitExpr(MiniCParser.ExprContext ctx) {
         String expr = "";
-
-        if (ctx.getChildCount() == 1) { // 자식을 변수를 가져옴
-            expr += ctx.getChild(0).getText();
-        } else if (ctx.getChildCount() == 2) { // 단항 연산자를 쓴 변수
-            expr += handleUnaryExpr(ctx, expr);
-        } else if (ctx.getChildCount() == 3) { // 연산자 집합
-            if (ctx.expr(1) == null)
-                expr += ctx.getChild(0).getText() + " " + ctx.getChild(1).getText() + " " + newTexts.get(ctx.expr(0));
-            else
-                expr += newTexts.get(ctx.expr(0)) + " " + ctx.getChild(1).getText() + " " + newTexts.get(ctx.expr(1));
-        } else if (ctx.getChildCount() == 4) { // ????
-            expr += ctx.getChild(0).getText() + "(" + ctx.args().getText() + ")";
-        } else if(isArrayDecl(ctx)){ // a[10]=8 과 같음,  배열에 해당하는 위치 값을 삽입한다.
-            expr += ctx.getChild(0).getText()+"["+newTexts.get(ctx.expr(0))+"] = "+newTexts.get(ctx.expr(1));
+        if(ctx.getChild(0).getText().equals("strcat")){
+            expr = ctx.getChild(2).getChild(0).getText() + " + " + ctx.getChild(2).getChild(2).getText();
+        }else {
+            if (ctx.getChildCount() == 1) { // 자식을 변수를 가져옴
+                expr += ctx.getChild(0).getText();
+            } else if (ctx.getChildCount() == 2) { // 단항 연산자를 쓴 변수
+                expr += handleUnaryExpr(ctx, expr);
+            } else if (ctx.getChildCount() == 3) { // 연산자 집합
+                if (ctx.expr(1) == null)
+                    expr += ctx.getChild(0).getText() + " " + ctx.getChild(1).getText() + " " + newTexts.get(ctx.expr(0));
+                else
+                    expr += newTexts.get(ctx.expr(0)) + " " + ctx.getChild(1).getText() + " " + newTexts.get(ctx.expr(1));
+            } else if (ctx.getChildCount() == 4) { // ????
+                expr += ctx.getChild(0).getText() + "(" + ctx.args().getText() + ")";
+            } else if (isArrayDecl(ctx)) { // a[10]=8 과 같음,  배열에 해당하는 위치 값을 삽입한다.
+                expr += ctx.getChild(0).getText() + "[" + newTexts.get(ctx.expr(0)) + "] = " + newTexts.get(ctx.expr(1));
+            }
         }
 
         newTexts.put(ctx, expr);
