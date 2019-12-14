@@ -1,13 +1,15 @@
-// Generated from C:/Users/zzz84/OneDrive/desktop/miniC2python/src\MiniC.g4 by ANTLR 4.7.2
+// Generated from /Users/goseonggwan/Downloads/Repo/comp/miniC2python/src/MiniC.g4 by ANTLR 4.7.2
  
 package listener.main;
 
+import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.atn.ATN;
-import org.antlr.v4.runtime.atn.ATNDeserializer;
-import org.antlr.v4.runtime.atn.LexerATNSimulator;
-import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MiniCLexer extends Lexer {
@@ -45,7 +47,7 @@ public class MiniCLexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "';'", "'='", "'['", "']'", "'('", "')'", "','", "'{'", "'}'", 
+			null, "';'", "'='", "'['", "']'", "'{'", "','", "'}'", "'('", "')'", 
 			"'-'", "'+'", "'--'", "'++'", "'*'", "'/'", "'%'", "'<'", "'>'", "'!'", 
 			"'void'", "'int'", "'double'", "'float'", "'char'", "'struct'", "'while'", 
 			"'if'", "'else'", "'return'", "'or'", "'and'", "'<='", "'>='", "'=='", 
@@ -157,8 +159,8 @@ public class MiniCLexer extends Lexer {
 		"\3\2\2\2A\u00bb\3\2\2\2C\u00be\3\2\2\2E\u00c1\3\2\2\2G\u00c4\3\2\2\2I"+
 		"\u00c7\3\2\2\2K\u00d1\3\2\2\2M\u00db\3\2\2\2O\u00dd\3\2\2\2Q\u00e4\3\2"+
 		"\2\2S\u00ec\3\2\2\2UV\7=\2\2V\4\3\2\2\2WX\7?\2\2X\6\3\2\2\2YZ\7]\2\2Z"+
-		"\b\3\2\2\2[\\\7_\2\2\\\n\3\2\2\2]^\7*\2\2^\f\3\2\2\2_`\7+\2\2`\16\3\2"+
-		"\2\2ab\7.\2\2b\20\3\2\2\2cd\7}\2\2d\22\3\2\2\2ef\7\177\2\2f\24\3\2\2\2"+
+		"\b\3\2\2\2[\\\7_\2\2\\\n\3\2\2\2]^\7}\2\2^\f\3\2\2\2_`\7.\2\2`\16\3\2"+
+		"\2\2ab\7\177\2\2b\20\3\2\2\2cd\7*\2\2d\22\3\2\2\2ef\7+\2\2f\24\3\2\2\2"+
 		"gh\7/\2\2h\26\3\2\2\2ij\7-\2\2j\30\3\2\2\2kl\7/\2\2lm\7/\2\2m\32\3\2\2"+
 		"\2no\7-\2\2op\7-\2\2p\34\3\2\2\2qr\7,\2\2r\36\3\2\2\2st\7\61\2\2t \3\2"+
 		"\2\2uv\7\'\2\2v\"\3\2\2\2wx\7>\2\2x$\3\2\2\2yz\7@\2\2z&\3\2\2\2{|\7#\2"+

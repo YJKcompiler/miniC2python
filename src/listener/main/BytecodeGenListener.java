@@ -204,16 +204,25 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
     @Override
     public void exitLocal_decl(MiniCParser.Local_declContext ctx) {
-        /**
-         * name : name of variable
-         * value : value of variable
-         **/
-
+        // a[0]
+        // 위와 같이 배열을 선언했을 때
         if (isArrayDecl(ctx)){
-            // 배열을 선언했을 때
             String name = ctx.IDENT().getText();
             String size = ctx.LITERAL().getText();
             newTexts.put(ctx, "\n" + name +"=" + "[0]*"+size);
+            return;
+        }
+        // a[3] = {1,2,3}
+        // 이러한 방법으로 배열 선언을 했을 때 자식의 갯수는 6개 이상.
+        if (ctx.getChildCount()>6){
+            String name = ctx.IDENT().getText();
+            //String size = ctx.LITERAL().getText();
+            String arr = "";
+            for (int i = 0; i < ctx.expr().size()-1; i++) {
+                arr  += ctx.expr(i).getText()+",";
+            }
+            arr += ctx.expr(ctx.expr().size()-1).getText();
+            newTexts.put(ctx, "\n" + name +"=" + "["+arr+"]");
             return;
         }
         String name = ctx.IDENT().getText();
@@ -292,7 +301,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
                 expr += newTexts.get(ctx.expr(0)) + " " + ctx.getChild(1).getText() + " " + newTexts.get(ctx.expr(1));
         } else if (ctx.getChildCount() == 4) { // ????
             expr += ctx.getChild(0).getText() + "(" + ctx.args().getText() + ")";
-        } else if(isAssigningWithValueInArray(ctx)){
+        } else if(isArrayDecl(ctx)){ // a[10]=8 과 같음,  배열에 해당하는 위치 값을 삽입한다.
             expr += ctx.getChild(0).getText()+"["+newTexts.get(ctx.expr(0))+"] = "+newTexts.get(ctx.expr(1));
         }
 
