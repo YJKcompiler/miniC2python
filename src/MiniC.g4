@@ -71,6 +71,9 @@ struct_attribute:   type_spec IDENT ';'
 
 VOID            :   'void';
 INT             :   'int';
+DOUBLE          :   'double';
+FLOAT           :   'float';
+CHAR            :   'char';
 STRUCT          :   'struct';
 
 WHILE           :   'while';
