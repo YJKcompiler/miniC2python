@@ -6,7 +6,8 @@ package generated;
 }
 program	        :   decl+			;
 decl		    :   var_decl
-		        |   fun_decl		;
+		        |   fun_decl
+		        |   struct_decl     ;
 var_decl	    :   type_spec IDENT ';'
 		        |   type_spec IDENT '=' LITERAL ';'
 		        |   type_spec IDENT '[' LITERAL ']' ';'	;
@@ -60,9 +61,14 @@ expr	        :   LITERAL
                 |   IDENT '[' expr ']' '=' expr		;
 args	        :   expr (',' expr)*
 	            |					 ;
+struct_decl     :   STRUCT IDENT struct_stmt ';' ;
+struct_stmt     :   '{' struct_attribute+ '}' ;
+struct_attribute:   type_spec IDENT ';'
+                |   type_spec IDENT '[' LITERAL ']' ';' ;
 
 VOID            :   'void';
 INT             :   'int';
+STRUCT          :   'struct';
 
 WHILE           :   'while';
 IF              :   'if';
