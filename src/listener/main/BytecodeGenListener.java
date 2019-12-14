@@ -135,7 +135,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     public void exitWhile_stmt(MiniCParser.While_stmtContext ctx) {
         // <(1) Fill here!>
         String stmt = "";
-        stmt += "\n\n" + ctx.getChild(0) + "(" + newTexts.get(ctx.expr()) + "):";
+        stmt += "\n\n" + ctx.getChild(0) + "(" + ctx.expr().getText() + "):";
         stmt += newTexts.get(ctx.stmt());
 
         newTexts.put(ctx, stmt);

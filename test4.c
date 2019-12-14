@@ -11,7 +11,7 @@ void main() {
     int c = 0;
     int numArr[10];
     numArr[1]=23;
-    while(b<10) {
+    while(!(b<10)) {
         ++b;
         if(a or c) {
             print(a);
