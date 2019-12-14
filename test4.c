@@ -14,6 +14,8 @@ void main() {
     numArr[1]=23;
     while(b<10) {
         ++b;
+        --b;
+        b= -b;
         if(a or c) {
             print(a);
             a = sum(a, -1);
