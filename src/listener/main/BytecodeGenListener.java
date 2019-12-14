@@ -36,7 +36,7 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
     // var_decl	: type_spec IDENT ';' | type_spec IDENT '=' LITERAL ';'|type_spec IDENT '[' LITERAL ']' ';'
     @Override
     public void enterVar_decl(MiniCParser.Var_declContext ctx) {
-        String varName = ctx.IDENT().getText();
+        String varName = ctx.IDENT(0).getText();
 
         if (isArrayDecl(ctx)) {
             symbolTable.putGlobalVar(varName, Type.INTARRAY);
