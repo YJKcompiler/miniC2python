@@ -9,6 +9,7 @@ import listener.main.MiniCParser.Local_declContext;
 import listener.main.MiniCParser.Var_declContext;
 
 
+
 public class SymbolTable {
     enum Type {
         INT, INTARRAY, VOID, ERROR
@@ -94,7 +95,6 @@ public class SymbolTable {
         String rtype = "";
         String res = "";
 
-        // <Fill here>
         argtype = BytecodeGenListenerHelper.getParamTypesText(ctx.params());
         rtype = BytecodeGenListenerHelper.getTypeText(ctx.type_spec());
 

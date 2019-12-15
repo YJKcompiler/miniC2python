@@ -23,7 +23,7 @@ public class MiniCParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, VOID=21, INT=22, DOUBLE=23, FLOAT=24, CHAR=25, 
 		STRUCT=26, WHILE=27, IF=28, ELSE=29, RETURN=30, OR=31, AND=32, LE=33, 
-		GE=34, EQ=35, NE=36, IDENT=37, STRING=38, FIDENT=39, LITERAL=40, DecimalConstant=41, 
+		GE=34, EQ=35, NE=36, IDENT=37, STRING=38, LITERAL=39, FIDENT=40, DecimalConstant=41, 
 		OctalConstant=42, HexadecimalConstant=43, WS=44;
 	public static final int
 		RULE_program = 0, RULE_decl = 1, RULE_var_decl = 2, RULE_type_spec = 3, 
@@ -55,7 +55,7 @@ public class MiniCParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, "VOID", "INT", 
 			"DOUBLE", "FLOAT", "CHAR", "STRUCT", "WHILE", "IF", "ELSE", "RETURN", 
-			"OR", "AND", "LE", "GE", "EQ", "NE", "IDENT", "STRING", "FIDENT", "LITERAL", 
+			"OR", "AND", "LE", "GE", "EQ", "NE", "IDENT", "STRING", "LITERAL", "FIDENT", 
 			"DecimalConstant", "OctalConstant", "HexadecimalConstant", "WS"
 		};
 	}
@@ -705,8 +705,8 @@ public class MiniCParser extends Parser {
 			case T__19:
 			case IDENT:
 			case STRING:
-			case FIDENT:
 			case LITERAL:
+			case FIDENT:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(119);
@@ -939,7 +939,7 @@ public class MiniCParser extends Parser {
 			setState(152);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__7) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__19) | (1L << WHILE) | (1L << IF) | (1L << RETURN) | (1L << IDENT) | (1L << STRING) | (1L << FIDENT) | (1L << LITERAL))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__4) | (1L << T__7) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << T__19) | (1L << WHILE) | (1L << IF) | (1L << RETURN) | (1L << IDENT) | (1L << STRING) | (1L << LITERAL) | (1L << FIDENT))) != 0)) {
 				{
 				{
 				setState(149);
@@ -1698,8 +1698,8 @@ public class MiniCParser extends Parser {
 			case T__19:
 			case IDENT:
 			case STRING:
-			case FIDENT:
 			case LITERAL:
+			case FIDENT:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(315);
@@ -2010,8 +2010,8 @@ public class MiniCParser extends Parser {
 		"\2\2\2+)\3\2\2\2+,\3\2\2\2,\3\3\2\2\2-\61\5\6\4\2.\61\5\n\6\2/\61\5\""+
 		"\22\2\60-\3\2\2\2\60.\3\2\2\2\60/\3\2\2\2\61\5\3\2\2\2\62\63\5\b\5\2\63"+
 		"\64\7\'\2\2\64\65\7\3\2\2\65Y\3\2\2\2\66\67\5\b\5\2\678\7\'\2\289\7\4"+
-		"\2\29:\7*\2\2:;\7\3\2\2;Y\3\2\2\2<=\5\b\5\2=>\7\'\2\2>?\7\5\2\2?@\7*\2"+
-		"\2@A\7\6\2\2AB\7\3\2\2BY\3\2\2\2CD\5\b\5\2DE\7\'\2\2EF\7\5\2\2FG\7*\2"+
+		"\2\29:\7)\2\2:;\7\3\2\2;Y\3\2\2\2<=\5\b\5\2=>\7\'\2\2>?\7\5\2\2?@\7)\2"+
+		"\2@A\7\6\2\2AB\7\3\2\2BY\3\2\2\2CD\5\b\5\2DE\7\'\2\2EF\7\5\2\2FG\7)\2"+
 		"\2GH\7\6\2\2HI\7\4\2\2IJ\7\7\2\2JO\5\36\20\2KL\7\b\2\2LN\5\36\20\2MK\3"+
 		"\2\2\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3\2\2\2QO\3\2\2\2RS\7\t\2\2ST\7"+
 		"\3\2\2TY\3\2\2\2UV\7\'\2\2VW\7\'\2\2WY\7\3\2\2X\62\3\2\2\2X\66\3\2\2\2"+
@@ -2034,16 +2034,16 @@ public class MiniCParser extends Parser {
 		"\2\2\2\u009a\u009b\3\2\2\2\u009b\u009d\3\2\2\2\u009c\u009a\3\2\2\2\u009d"+
 		"\u009e\7\t\2\2\u009e\27\3\2\2\2\u009f\u00a0\5\b\5\2\u00a0\u00a1\7\'\2"+
 		"\2\u00a1\u00a2\7\3\2\2\u00a2\u00cf\3\2\2\2\u00a3\u00a4\5\b\5\2\u00a4\u00a5"+
-		"\7\'\2\2\u00a5\u00a6\7\4\2\2\u00a6\u00a7\7*\2\2\u00a7\u00a8\7\3\2\2\u00a8"+
+		"\7\'\2\2\u00a5\u00a6\7\4\2\2\u00a6\u00a7\7)\2\2\u00a7\u00a8\7\3\2\2\u00a8"+
 		"\u00cf\3\2\2\2\u00a9\u00aa\5\b\5\2\u00aa\u00ab\7\'\2\2\u00ab\u00ac\7\5"+
-		"\2\2\u00ac\u00ad\7*\2\2\u00ad\u00ae\7\6\2\2\u00ae\u00af\7\3\2\2\u00af"+
+		"\2\2\u00ac\u00ad\7)\2\2\u00ad\u00ae\7\6\2\2\u00ae\u00af\7\3\2\2\u00af"+
 		"\u00cf\3\2\2\2\u00b0\u00b1\5\b\5\2\u00b1\u00b2\7\'\2\2\u00b2\u00b3\7\5"+
-		"\2\2\u00b3\u00b4\7*\2\2\u00b4\u00b5\7\6\2\2\u00b5\u00b6\7\4\2\2\u00b6"+
+		"\2\2\u00b3\u00b4\7)\2\2\u00b4\u00b5\7\6\2\2\u00b5\u00b6\7\4\2\2\u00b6"+
 		"\u00b7\7\7\2\2\u00b7\u00bc\5\36\20\2\u00b8\u00b9\7\b\2\2\u00b9\u00bb\5"+
 		"\36\20\2\u00ba\u00b8\3\2\2\2\u00bb\u00be\3\2\2\2\u00bc\u00ba\3\2\2\2\u00bc"+
 		"\u00bd\3\2\2\2\u00bd\u00bf\3\2\2\2\u00be\u00bc\3\2\2\2\u00bf\u00c0\7\t"+
 		"\2\2\u00c0\u00c1\7\3\2\2\u00c1\u00cf\3\2\2\2\u00c2\u00c3\5\b\5\2\u00c3"+
-		"\u00c4\7\'\2\2\u00c4\u00c5\7\5\2\2\u00c5\u00c6\7*\2\2\u00c6\u00c7\7\6"+
+		"\u00c4\7\'\2\2\u00c4\u00c5\7\5\2\2\u00c5\u00c6\7)\2\2\u00c6\u00c7\7\6"+
 		"\2\2\u00c7\u00c8\7\4\2\2\u00c8\u00c9\7(\2\2\u00c9\u00ca\7\3\2\2\u00ca"+
 		"\u00cf\3\2\2\2\u00cb\u00cc\7\'\2\2\u00cc\u00cd\7\'\2\2\u00cd\u00cf\7\3"+
 		"\2\2\u00ce\u009f\3\2\2\2\u00ce\u00a3\3\2\2\2\u00ce\u00a9\3\2\2\2\u00ce"+
@@ -2056,11 +2056,11 @@ public class MiniCParser extends Parser {
 		"\2\u00e0\u00e1\7 \2\2\u00e1\u00e7\7\3\2\2\u00e2\u00e3\7 \2\2\u00e3\u00e4"+
 		"\5\36\20\2\u00e4\u00e5\7\3\2\2\u00e5\u00e7\3\2\2\2\u00e6\u00e0\3\2\2\2"+
 		"\u00e6\u00e2\3\2\2\2\u00e7\35\3\2\2\2\u00e8\u00e9\b\20\1\2\u00e9\u0110"+
-		"\7*\2\2\u00ea\u00eb\7\n\2\2\u00eb\u00ec\5\36\20\2\u00ec\u00ed\7\13\2\2"+
+		"\7)\2\2\u00ea\u00eb\7\n\2\2\u00eb\u00ec\5\36\20\2\u00ec\u00ed\7\13\2\2"+
 		"\u00ed\u0110\3\2\2\2\u00ee\u0110\7\'\2\2\u00ef\u00f0\7\'\2\2\u00f0\u00f1"+
 		"\7\5\2\2\u00f1\u00f2\5\36\20\2\u00f2\u00f3\7\6\2\2\u00f3\u0110\3\2\2\2"+
 		"\u00f4\u00f5\7\'\2\2\u00f5\u00f6\7\n\2\2\u00f6\u00f7\5 \21\2\u00f7\u00f8"+
-		"\7\13\2\2\u00f8\u0110\3\2\2\2\u00f9\u0110\7(\2\2\u00fa\u0110\7)\2\2\u00fb"+
+		"\7\13\2\2\u00f8\u0110\3\2\2\2\u00f9\u0110\7(\2\2\u00fa\u0110\7*\2\2\u00fb"+
 		"\u00fc\7\r\2\2\u00fc\u0110\5\36\20\26\u00fd\u00fe\7\16\2\2\u00fe\u0110"+
 		"\5\36\20\25\u00ff\u0100\7\17\2\2\u0100\u0110\5\36\20\24\u0101\u0102\7"+
 		"\20\2\2\u0102\u0110\5\36\20\23\u0103\u0104\7\26\2\2\u0104\u0110\5\36\20"+
@@ -2097,7 +2097,7 @@ public class MiniCParser extends Parser {
 		"\u0152\3\2\2\2\u0152\u0150\3\2\2\2\u0152\u0153\3\2\2\2\u0153\u0154\3\2"+
 		"\2\2\u0154\u0155\7\t\2\2\u0155%\3\2\2\2\u0156\u0157\5\b\5\2\u0157\u0158"+
 		"\7\'\2\2\u0158\u0159\7\3\2\2\u0159\u0162\3\2\2\2\u015a\u015b\5\b\5\2\u015b"+
-		"\u015c\7\'\2\2\u015c\u015d\7\5\2\2\u015d\u015e\7*\2\2\u015e\u015f\7\6"+
+		"\u015c\7\'\2\2\u015c\u015d\7\5\2\2\u015d\u015e\7)\2\2\u015e\u015f\7\6"+
 		"\2\2\u015f\u0160\7\3\2\2\u0160\u0162\3\2\2\2\u0161\u0156\3\2\2\2\u0161"+
 		"\u015a\3\2\2\2\u0162\'\3\2\2\2\30+\60OXhmw~\u0088\u0094\u009a\u00bc\u00ce"+
 		"\u00de\u00e6\u010f\u0138\u013a\u0142\u0146\u0152\u0161";
