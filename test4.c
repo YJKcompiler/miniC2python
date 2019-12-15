@@ -7,9 +7,10 @@ int sub(int a, int b) {
 }
 void main() {
     int a = 3;
-    int b = 5;
+    float b = 5.3;
     int c = 0;
     int numArr[10];
+    int a[3] = {1,2,3};
     char test[10] = "cat";
     char test2[10] = "and dog";
     char test3[20];

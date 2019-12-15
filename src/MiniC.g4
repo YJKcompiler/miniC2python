@@ -49,7 +49,7 @@ expr	        :   LITERAL
 	            |   IDENT '[' expr ']'
 	            |   IDENT '(' args ')'
 	            |   STRING
-	            |   FIDENT
+	            |   DemicalPoint
 	            |   '-' expr
 	            |   '+' expr
                 |   '--' expr
@@ -100,13 +100,15 @@ IDENT           :   [a-zA-Z_]   (   [a-zA-Z_]
 
 STRING          :   '"' ~('\r' | '\n' | '"')* '"' ;
 
-FIDENT          : [0-9] + '.' + [0.9];
+
 
 
 LITERAL         :   DecimalConstant
                 |   OctalConstant
-                |   HexadecimalConstant     ;
+                |   HexadecimalConstant
+                |   DemicalPoint;
 
+DemicalPoint          :   DecimalConstant'.'[0-9]+;
 
 DecimalConstant :   '0'
 	            |   [1-9] [0-9]*    ;

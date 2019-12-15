@@ -49,17 +49,6 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
 
 
     @Override
-    public void enterLocal_decl(MiniCParser.Local_declContext ctx) {
-        if (isArrayDecl(ctx)) {
-            symbolTable.putLocalVar(getLocalVarName(ctx), Type.INTARRAY);
-        } else if (isDeclWithInit(ctx)) {
-            symbolTable.putLocalVarWithInitVal(getLocalVarName(ctx), Type.INT, initVal(ctx));
-        } else { // simple decl
-            symbolTable.putLocalVar(getLocalVarName(ctx), Type.INT);
-        }
-    }
-
-    @Override
     public void enterProgram(MiniCParser.ProgramContext ctx) {
 
     }
@@ -246,9 +235,11 @@ public class BytecodeGenListener extends MiniCBaseListener implements ParseTreeL
             //String size = ctx.LITERAL().getText();
             String arr = "";
 
+            // 아래에서 문자열인지 아닌지를 검사한다.
             if (ctx.getChild(6).getText().contains("\"")){
                 newTexts.put(ctx, "\n" + name +" = " + ctx.getChild(6).getText());
             }
+            // 아래는 배열임을 나타낸다.
             else {
                 for (int i = 0; i < ctx.expr().size()-1; i++) {
                     arr  += ctx.expr(i).getText()+",";
